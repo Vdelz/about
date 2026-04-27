@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Healthcare",
+    "description": "RBC analysis and medical imaging.",
+    "imageUrl": "images/rbc.png",
+    "category": "Healthcare",
+    "link": null,
+    "order": 1
+  },
+  {
+    "id": 2,
+    "title": "Mobility",
+    "description": "ALPR Make Model recognition.",
+    "imageUrl": "images/alpr.jpg",
+    "category": "Automotive",
+    "link": null,
+    "order": 2
+  },
+  {
+    "id": 3,
+    "title": "Automotive",
+    "description": "Lane detection and safety distance.",
+    "imageUrl": "images/lane.png",
+    "category": "Automotive",
+    "link": null,
+    "order": 3
+  },
+  {
+    "id": 4,
+    "title": "Security",
+    "description": "Airport Security X-Ray analysis.",
+    "imageUrl": "images/xray.jpg",
+    "category": "Security",
+    "link": null,
+    "order": 4
+  },
+  {
+    "id": 5,
+    "title": "Education",
+    "description": "NLP Languages and learning tools.",
+    "imageUrl": "images/duogeo.png",
+    "category": "NLP",
+    "link": null,
+    "order": 5
+  },
+  {
+    "id": 6,
+    "title": "Banking",
+    "description": "NER harvesting and document processing.",
+    "imageUrl": "images/bank.png",
+    "category": "FinTech",
+    "link": null,
+    "order": 6
+  }
+]

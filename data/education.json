@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "degree": "Computational Physics",
+    "school": "Scuola Superiore di Catania",
+    "year": "2009 - 2012",
+    "description": "Excellence University Scholarship"
+  },
+  {
+    "id": 2,
+    "degree": "Physics",
+    "school": "Università di Catania",
+    "year": "2009",
+    "description": ""
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "name": "Michelangelo Villano",
+    "role": "_",
+    "imageUrl": "images/collab/michelangelo_villano.jpg",
+    "url": "https://www.linkedin.com/in/michelangelovillano/"
+  },
+  {
+    "id": 2,
+    "name": "Beniamino Guerra",
+    "role": "_",
+    "imageUrl": "images/collab/beniamino_guerra.jpg",
+    "url": "https://www.linkedin.com/in/beniamino-guerra-ph-d-17958858/"
+  },
+  {
+    "id": 3,
+    "name": "Danilo Giuffrida",
+    "role": "_",
+    "imageUrl": "images/collab/danilo_giuffrida.jpg",
+    "url": "https://www.linkedin.com/in/danilo-giuffrida/"
+  },
+  {
+    "id": 4,
+    "name": "Andrea Busa",
+    "role": "_",
+    "imageUrl": "images/collab/andrea_busa.png",
+    "url": "https://www.linkedin.com/in/andreabusa/"
+  },
+  {
+    "id": 5,
+    "name": "Marco Belotti",
+    "role": "_",
+    "imageUrl": "images/collab/marco_belotti.jpg",
+    "url": "https://www.linkedin.com/in/marco-belotti-58504134/"
+  },
+  {
+    "id": 6,
+    "name": "Mika Yoshida",
+    "role": "_",
+    "imageUrl": "images/collab/mika_joshida.jpg",
+    "url": "https://www.linkedin.com/in/mika-yoshida"
+  },
+  {
+    "id": 7,
+    "name": "Ersilia Del Zoppo",
+    "role": "_",
+    "imageUrl": "images/collab/ersilia_delzoppo.jpg",
+    "url": "https://www.linkedin.com/in/ersilia-del-zoppo-68b81562/"
+  },
+  {
+    "id": 8,
+    "name": "Valeria Rusovski",
+    "role": "_",
+    "imageUrl": "images/collab/valeria_rusovski.jpg",
+    "url": "https://www.linkedin.com/in/valeria-rusovski"
+  },
+  {
+    "id": 9,
+    "name": "Lorenzo Bosco",
+    "role": "_",
+    "imageUrl": "images/collab/lorenzo_bosco.jpg",
+    "url": "https://www.linkedin.com/in/lorenzo-bosco-31427594/"
+  },
+  {
+    "id": 10,
+    "name": "Riccardo Agnello",
+    "role": "_",
+    "imageUrl": "images/collab/riccardo_agnello.jpg",
+    "url": "https://www.linkedin.com/in/riccardo-agnello-9a858362/"
+  },
+  {
+    "id": 11,
+    "name": "Alberto Stracuzzi",
+    "role": "_",
+    "imageUrl": "images/collab/alberto_stracuzzi.jpg",
+    "url": "https://www.linkedin.com/in/alberto-stracuzzi/"
+  }
+]

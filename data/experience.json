@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Head Data Scientist",
+    "company": "KoexAI",
+    "period": "2023 - Present",
+    "location": "Catania, Italy (Remote)",
+    "description": "Leading a team of 9 PhD Data Scientists. Projects sponsored by INAF (Astrophysics, Radioastronomy). Obtained funding of >$700K."
+  },
+  {
+    "id": 2,
+    "title": "Senior Officer AI Performance Engineer",
+    "company": "State Street Bank",
+    "period": "2022 - 2024",
+    "location": "Austin, Texas, United States",
+    "description": "OCR and document intelligence platform. 50x speed improvement for document segmentation using AlBERT. Combined NLP and CV methods."
+  },
+  {
+    "id": 3,
+    "title": "Lead Data Scientist",
+    "company": "Cartrack Asia Pacific",
+    "period": "2020 - 2022",
+    "location": "Singapore",
+    "description": "Leading Computer Vision and Deep Learning solutions (Driver/in-cabin monitoring, ADAS). Worked with embedded boards (Xilinx, RockChip)."
+  },
+  {
+    "id": 4,
+    "title": "Senior Video Processing Data Scientist",
+    "company": "Tattile srl",
+    "period": "2018 - 2020",
+    "location": "Brescia, Italy",
+    "description": "RGB/IR camera firmware, ALPR cameras, FPGA solutions for real-time processing."
+  }
+]

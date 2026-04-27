@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "HALOS: Hierarchical Aggregation Learning for Overdensity Search",
+    "conference": "Astronomy and Computing",
+    "year": 2026,
+    "description": null,
+    "link": "https://www.sciencedirect.com/science/article/pii/S2213133726000569"
+  },
+  {
+    "id": 2,
+    "title": "A Dual AI Framework for the Automatic Characterization of low-interacting H-rich SNe",
+    "conference": "Astronomy and Computing",
+    "year": 2026,
+    "description": null,
+    "link": "https://www.sciencedirect.com/science/article/pii/S2213133726000582"
+  },
+  {
+    "id": 3,
+    "title": "3D YOLO-like Detector for Cosmic Voids: A Multi-Scale Deep Learning Approach to Large-Scale Underdense Structures",
+    "conference": "Astronomy and Computing",
+    "year": 2026,
+    "description": "under review",
+    "link": null
+  },
+  {
+    "id": 4,
+    "title": "Machine Learning-based Voice Assessment for the Detection of Positive and Recovered COVID-19 Patients",
+    "conference": "Journal of Voice",
+    "year": 2021,
+    "description": null,
+    "link": "https://www.sciencedirect.com/science/article/pii/S089219972100388X"
+  },
+  {
+    "id": 5,
+    "title": "A data volume reduction strategy based on on-board Doppler filtering",
+    "conference": "IEEE GOLD Remote Sensing Conference",
+    "year": 2014,
+    "description": null,
+    "link": "https://www.researchgate.net/publication/263280912_A_data_volume_reduction_strategy_based_on_on-board_Doppler_filtering"
+  },
+  {
+    "id": 6,
+    "title": "Joint effects of on-board Doppler filtering and quantization in spaceborne SAR systems",
+    "conference": "IEEE GOLD Remote Sensing Conference",
+    "year": 2014,
+    "description": null,
+    "link": "https://www.researchgate.net/publication/263280937_Joint_effects_of_on-board_Doppler_filtering_and_quantization_in_spaceborne_SAR_systems"
+  },
+  {
+    "id": 7,
+    "title": "On-Board Doppler Filtering for Data Volume Reduction in Spaceborne SAR Systems",
+    "conference": "International Radar Symposium",
+    "year": 2014,
+    "description": null,
+    "link": "https://www.researchgate.net/publication/263390341_On-Board_Doppler_Filtering_for_Data_Volume_Reduction_in_Spaceborne_SAR_Systems"
+  }
+]

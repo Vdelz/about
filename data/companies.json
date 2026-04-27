@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "KoexAI",
+    "logoUrl": "images/logos/koexai_logo_ext.png",
+    "url": "https://koexai.com"
+  },
+  {
+    "id": 2,
+    "name": "State Street",
+    "logoUrl": "images/logos/stst_logo_ext.png",
+    "url": "https://www.statestreet.com"
+  },
+  {
+    "id": 3,
+    "name": "Cartrack",
+    "logoUrl": "images/logos/cartrack_logo_ext.png",
+    "url": "https://www.cartrack.com"
+  },
+  {
+    "id": 4,
+    "name": "Tattile",
+    "logoUrl": "images/logos/tattile_logo_ext.png",
+    "url": "https://www.tattile.com"
+  },
+  {
+    "id": 5,
+    "name": "DLR",
+    "logoUrl": "images/logos/dlr_logo_ext.png",
+    "url": "https://www.dlr.de"
+  },
+  {
+    "id": 6,
+    "name": "ESA",
+    "logoUrl": "images/logos/ESA_logo_ext.png",
+    "url": "https://www.esa.int"
+  },
+  {
+    "id": 7,
+    "name": "ICSC",
+    "logoUrl": "images/logos/icsc_logo_ext.png",
+    "url": "https://www.icsc.com"
+  },
+  {
+    "id": 8,
+    "name": "Leonardo",
+    "logoUrl": "images/logos/leonardo_logo_ext.png",
+    "url": "https://www.leonardocompany.com"
+  },
+  {
+    "id": 9,
+    "name": "Accenture",
+    "logoUrl": "images/logos/accenture_logo_ext.png",
+    "url": "https://www.accenture.com"
+  },
+  {
+    "id": 10,
+    "name": "Tabex",
+    "logoUrl": "images/logos/tabex_logo_ext.png",
+    "url": "https://www.tabex.com"
+  },
+  {
+    "id": 11,
+    "name": "Topaz",
+    "logoUrl": "images/logos/topaz_logo_ext.png",
+    "url": "https://www.linkedin.com/company/topaz-energy-and-marine"
+  },
+  {
+    "id": 12,
+    "name": "UniCredit",
+    "logoUrl": "images/logos/unicredit_logo_ext.png",
+    "url": "https://www.unicredit.com"
+  }
+]
