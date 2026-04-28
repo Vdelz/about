@@ -1,78 +1,92 @@
 [
   {
     "id": 1,
-    "name": "Michelangelo Villano",
-    "role": "_",
-    "imageUrl": "images/collab/michelangelo_villano.jpg",
-    "url": "https://www.linkedin.com/in/michelangelovillano/"
-  },
-  {
-    "id": 2,
-    "name": "Beniamino Guerra",
-    "role": "_",
-    "imageUrl": "images/collab/beniamino_guerra.jpg",
-    "url": "https://www.linkedin.com/in/beniamino-guerra-ph-d-17958858/"
-  },
-  {
-    "id": 3,
-    "name": "Danilo Giuffrida",
-    "role": "_",
-    "imageUrl": "images/collab/danilo_giuffrida.jpg",
-    "url": "https://www.linkedin.com/in/danilo-giuffrida/"
-  },
-  {
-    "id": 4,
-    "name": "Andrea Busa",
-    "role": "_",
-    "imageUrl": "images/collab/andrea_busa.png",
-    "url": "https://www.linkedin.com/in/andreabusa/"
-  },
-  {
-    "id": 5,
-    "name": "Marco Belotti",
-    "role": "_",
-    "imageUrl": "images/collab/marco_belotti.jpg",
-    "url": "https://www.linkedin.com/in/marco-belotti-58504134/"
-  },
-  {
-    "id": 6,
-    "name": "Mika Yoshida",
-    "role": "_",
-    "imageUrl": "images/collab/mika_joshida.jpg",
-    "url": "https://www.linkedin.com/in/mika-yoshida"
-  },
-  {
-    "id": 7,
     "name": "Ersilia Del Zoppo",
-    "role": "_",
+    "role": "Aerospace Systems Engineer @ ESA",
     "imageUrl": "images/collab/ersilia_delzoppo.jpg",
     "url": "https://www.linkedin.com/in/ersilia-del-zoppo-68b81562/"
   },
   {
+    "id": 2,
+    "name": "Laura Pirro",
+    "role": "Executive & Board Member @ EFCE",
+    "imageUrl": "images/collab/laura_pirro.jpg",
+    "url": "https://www.linkedin.com/in/laura-pirro/"
+  },
+  {
+    "id": 3,
+    "name": "Lorenzo Bosco",
+    "role": "Manager, Device and Material Analysis @ Coherent Corp.",
+    "imageUrl": "images/collab/lorenzo_bosco.jpg",
+    "url": "https://www.linkedin.com/in/lorenzo-bosco-31427594/"
+  },
+  {
+    "id": 4,
+    "name": "Riccardo Agnello",
+    "role": "Scientist @ ITER Neutral Beam Test Facility",
+    "imageUrl": "images/collab/riccardo_agnello.jpg",
+    "url": "https://www.researchgate.net/profile/Riccardo-Agnello/research/"
+  },
+  {
+    "id": 5,
+    "name": "Michelangelo Villano",
+    "role": "Head of SAR Research @ DLR",
+    "imageUrl": "images/collab/michelangelo_villano.jpg",
+    "url": "https://www.linkedin.com/in/michelangelovillano/"
+  },
+  {
+    "id": 6,
+    "name": "Danilo Giuffrida",
+    "role": "Data Lead @ Whatwapp",
+    "imageUrl": "images/collab/danilo_giuffrida.jpg",
+    "url": "https://www.linkedin.com/in/danilo-giuffrida/"
+  },
+  {
+    "id": 7,
+    "name": "Andrea Busa",
+    "role": "Head of Digital Systems @ Leonardo S.p.A.",
+    "imageUrl": "images/collab/andrea_busa.png",
+    "url": "https://www.linkedin.com/in/andreabusa/"
+  },
+  {
     "id": 8,
     "name": "Valeria Rusovski",
-    "role": "_",
+    "role": "Consultant @ NTT Data",
     "imageUrl": "images/collab/valeria_rusovski.jpg",
     "url": "https://www.linkedin.com/in/valeria-rusovski"
   },
   {
     "id": 9,
-    "name": "Lorenzo Bosco",
-    "role": "_",
-    "imageUrl": "images/collab/lorenzo_bosco.jpg",
-    "url": "https://www.linkedin.com/in/lorenzo-bosco-31427594/"
+    "name": "Marco Belotti",
+    "role": "Head of device Unit @ Tattile",
+    "imageUrl": "images/collab/marco_belotti.jpg",
+    "url": "https://www.linkedin.com/in/marco-belotti-58504134/"
   },
   {
     "id": 10,
-    "name": "Riccardo Agnello",
-    "role": "_",
-    "imageUrl": "images/collab/riccardo_agnello.jpg",
-    "url": "https://www.linkedin.com/in/riccardo-agnello-9a858362/"
+    "name": "Zak Calisto",
+    "role": "CEO @ Cartrack Asia Pacific",
+    "imageUrl": "images/collab/zak_calisto.jpg",
+    "url": "https://karooooo.com/board-governance/"
   },
   {
     "id": 11,
+    "name": "Mika Yoshida",
+    "role": "Associate @ SMBC Group",
+    "imageUrl": "images/collab/mika_joshida.jpg",
+    "url": "https://www.linkedin.com/in/mika-yoshida"
+  },
+  {
+    "id": 12,
+    "name": "Beniamino Guerra",
+    "role": "AVP Model Validation @ State Street",
+    "imageUrl": "images/collab/beniamino_guerra.jpg",
+    "url": "https://www.linkedin.com/in/beniamino-guerra-ph-d-17958858/"
+  },
+  {
+    "id": 13,
     "name": "Alberto Stracuzzi",
-    "role": "_",
+    "role": "Head Engineer @ Citus AG",
     "imageUrl": "images/collab/alberto_stracuzzi.jpg",
     "url": "https://www.linkedin.com/in/alberto-stracuzzi/"
   }
