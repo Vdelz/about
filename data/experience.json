@@ -2,33 +2,49 @@
   {
     "id": 1,
     "title": "Head Data Scientist",
-    "company": "KoexAI",
+    "company": "KoexAI Srl",
     "period": "2023 - Present",
     "location": "Catania, Italy (Remote)",
-    "description": "Leading a team of 9 PhD Data Scientists. Projects sponsored by INAF (Astrophysics, Radioastronomy). Obtained funding of >$700K."
+    "description": "Leading a team of 10 PhD Data Scientists. Projects sponsored by INAF. Research on HPC. Obtained funding of >$700K."
   },
   {
     "id": 2,
-    "title": "Senior Officer AI Performance Engineer",
-    "company": "State Street Bank",
+    "title": "Senior AI Performance Engineer",
+    "company": "State Street Bank LTD",
     "period": "2022 - 2024",
-    "location": "Austin, Texas, United States",
-    "description": "OCR and document intelligence platform. 50x speed improvement for document segmentation using AlBERT. Combined NLP and CV methods."
+    "location": "Austin, Texas, USA (Remote)",
+    "description": "OCR and document intelligence platform. 50x speed improvement in segmentation using AlBERT. Combined NLP and CV methods for NER."
   },
   {
     "id": 3,
     "title": "Lead Data Scientist",
-    "company": "Cartrack Asia Pacific",
+    "company": "Cartrack Asia Pacific LTD",
     "period": "2020 - 2022",
     "location": "Singapore",
-    "description": "Leading Computer Vision and Deep Learning solutions (Driver/in-cabin monitoring, ADAS). Worked with embedded boards (Xilinx, RockChip)."
+    "description": "Leading Computer Vision and Deep Learning solutions (Driver/in-cabin monitoring, ADAS). Worked with embedded boards (NVIDIA Jetson, RockChip)."
   },
   {
     "id": 4,
     "title": "Senior Video Processing Data Scientist",
-    "company": "Tattile srl",
+    "company": "Tattile Srl",
     "period": "2018 - 2020",
     "location": "Brescia, Italy",
-    "description": "RGB/IR camera firmware, ALPR cameras, FPGA solutions for real-time processing."
+    "description": "RGB/IR camera firmware, ALPR cameras, FPGA solutions for real-time processing. (xilinx)"
+  },
+  {
+    "id": 5,
+    "title": "Artificial Intelligence, ML/DL Engineer",
+    "company": "Leonardo S.p.A.",
+    "period": "2017 - 2018",
+    "location": "Catania, Italy",
+    "description": "Camera systems calibration for surveillance and security. Object detection and tracking."
+  },
+  {
+    "id": 6,
+    "title": "Junior Research Scientist",
+    "company": "DLR - German Aerospace Center",
+    "period": "2014 - 2015",
+    "location": "Munich, Germany",
+    "description": "SAR signal processing, Alias suppression, Lossy compression"
   }
 ]
