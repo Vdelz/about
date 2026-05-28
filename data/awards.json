@@ -4,55 +4,55 @@
     "title": "Best Proposed Architecture",
     "organization": "Cloud Detection Challenge at IEEE MetroXRAINE",
     "year": 2024,
-    "description": null
+    "description": "Machine Learning"
   },
   {
     "id": 2,
-    "title": "World SILVER Medal & Best Technical Solution Award",
+    "title": "World SILVER Medal & Best Technical Solution",
     "organization": "EuroBot World Championship",
     "year": 2011,
-    "description": null
+    "description": "Robotics"
   },
   {
     "id": 3,
-    "title": "Excellence Scholarship",
-    "organization": "Scuola Superiore di Catania",
+    "title": "Excellence University Scholarship",
+    "organization": "College Scuola Superiore di Catania",
     "year": 2009,
-    "description": "Excellence Scholarship held from 2009-2012"
+    "description": "Computational Physics"
   },
   {
     "id": 4,
     "title": "13th National Place - Excellence Scholarship",
     "organization": "INDAM (Istituto Nazionale di Alta Matematica)",
     "year": 2009,
-    "description": null
+    "description": "Problem Solving"
   },
   {
     "id": 5,
-    "title": "BRONZE MEDAL",
+    "title": "BRONZE Medal",
     "organization": "Italian National Mathematics Olympics",
     "year": 2009,
-    "description": null
+    "description": "Mathematics"
   },
   {
     "id": 6,
-    "title": "MERIT MEDAL",
+    "title": "MERIT Medal",
     "organization": "Italian National Physics Olympics",
     "year": 2009,
-    "description": null
+    "description": "Physics"
   },
   {
     "id": 7,
-    "title": "MERIT MEDAL",
+    "title": "MERIT Medal",
     "organization": "Italian National Mathematics Olympics",
     "year": 2008,
-    "description": null
+    "description": "Mathematics"
   },
   {
     "id": 8,
-    "title": "MERIT MEDAL",
+    "title": "MERIT Medal",
     "organization": "Italian National Mathematics Olympics",
     "year": 2007,
-    "description": null
+    "description": "Mathematics"
   }
 ]
