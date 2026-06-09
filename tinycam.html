@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landmarks Demo with Debugger</title>
+
+<style>
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:black;
+    font-family: monospace;
+}
+
+#video,#overlay{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+#toggle{
+    position:fixed;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    border:none;
+    background:white;
+    cursor:pointer;
+    z-index:10;
+    display: none; 
+}
+
+#debug-hud {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #00FF33;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 11px;
+    line-height: 1.4;
+    pointer-events: none;
+    z-index: 20;
+    max-width: 85%;
+    border: 1px solid #00FF33;
+    word-break: break-all;
+}
+</style>
+</head>
+
+<body>
+
+<video id="video" autoplay playsinline muted></video>
+<canvas id="overlay"></canvas>
+
+<button id="toggle"></button>
+<div id="debug-hud">Initializing system...</div>
+
+<script type="module">
+// FIX 1: Explicitly import modules cleanly from the CDN since we're using a module script
+import { FilesetResolver, FaceLandmarker } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.8/vision_bundle.mjs";
+
+const video = document.getElementById("video");
+const canvas = document.getElementById("overlay");
+const toggle = document.getElementById("toggle");
+const debugHud = document.getElementById("debug-hud");
+const ctx = canvas.getContext("2d");
+
+let faceLandmarker;
+let showLandmarks = true;
+let lastVideoTime = -1;
+
+function logDebug(message, isError = false) {
+    const timestamp = new Date().toLocaleTimeString();
+    const formattedMessage = `[${timestamp}] ${message}`;
+    if (isError) {
+        debugHud.innerHTML += `<br><span style="color: #FF3333;">❌ ${formattedMessage}</span>`;
+        console.error(message);
+    } else {
+        debugHud.innerHTML += `<br>ℹ️ ${formattedMessage}`;
+        console.log(message);
+    }
+}
+
+// Check protocol safety helper
+if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost') {
+    logDebug("WARNING: You are on an insecure HTTP connection. Mobile browsers block MediaPipe/WASM over network IPs without HTTPS!", true);
+}
+
+// Initialize MediaPipe Face Landmarker
+async function initMediaPipe() {
+    try {
+        logDebug("Loading compiled WASM engine binaries...");
+        const vision = await FilesetResolver.forVisionTasks(
+            "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.8/wasm"
+        );
+        
+        logDebug("Downloading Model Asset bundle (~85MB)...");
+        faceLandmarker = await FaceLandmarker.createFromOptions(vision, {
+            baseOptions: {
+                modelAssetPath: `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker_v2_with_blendshapes/float16/1/face_landmarker_v2_with_blendshapes.task`,
+                // FIX 3: CPU delegate fallback processing for stable tracking performance on budget chipsets
+                delegate: "CPU" 
+            },
+            runningMode: "VIDEO",
+            numFaces: 1
+        });
+        
+        logDebug("MediaPipe pipeline active!");
+        toggle.style.display = "block";
+        
+    } catch (error) {
+        logDebug(`MediaPipe Error: ${error.name} -> ${error.message}`, true);
+        console.error(error);
+    }
+}
+
+// Start Web Camera Feed
+logDebug("Requesting camera pipeline access...");
+navigator.mediaDevices.getUserMedia({
+    video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: "user" }
+}).then(stream => {
+    logDebug("Camera attached successfully.");
+    video.srcObject = stream;
+    
+    video.addEventListener("loadeddata", () => {
+        video.play().then(() => {
+            logDebug("Playback active.");
+        }).catch(err => {
+            logDebug(`Playback blocked: ${err.message}`, true);
+        });
+        
+        loop();
+        initMediaPipe();
+    });
+}).catch(err => {
+    logDebug(`Camera block: ${err.name} - ${err.message}`, true);
+});
+
+toggle.onclick = () => {
+    showLandmarks = !showLandmarks;
+    toggle.style.background = showLandmarks ? "white" : "#555";
+};
+
+function drawLandmarks(points) {
+    if (!showLandmarks) return;
+    ctx.fillStyle = "#00FFCC"; 
+    for (const p of points) {
+        ctx.beginPath();
+        ctx.arc(p.x * canvas.width, p.y * canvas.height, 2, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+function loop() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (faceLandmarker && video.currentTime !== lastVideoTime && video.readyState >= 2) {
+        lastVideoTime = video.currentTime;
+        const result = faceLandmarker.detectForVideo(video, performance.now());
+        if (result && result.faceLandmarks && result.faceLandmarks.length > 0) {
+            for (const landmarks of result.faceLandmarks) {
+                drawLandmarks(landmarks);
+            }
+        }
+    }
+    requestAnimationFrame(loop);
+}
+</script>
+
+</body>
+</html>
