@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Landmarks Demo with Debugger</title>
+<title>Landmarks Demo - Fixed Alignment</title>
 
 <style>
 html,body{
@@ -65,7 +65,6 @@ html,body{
 <div id="debug-hud">Initializing system...</div>
 
 <script type="module">
-// FIX 1: Explicitly import modules cleanly from the CDN since we're using a module script
 import { FilesetResolver, FaceLandmarker } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.8/vision_bundle.mjs";
 
 const video = document.getElementById("video");
@@ -83,19 +82,11 @@ function logDebug(message, isError = false) {
     const formattedMessage = `[${timestamp}] ${message}`;
     if (isError) {
         debugHud.innerHTML += `<br><span style="color: #FF3333;">❌ ${formattedMessage}</span>`;
-        console.error(message);
     } else {
         debugHud.innerHTML += `<br>ℹ️ ${formattedMessage}`;
-        console.log(message);
     }
 }
 
-// Check protocol safety helper
-if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost') {
-    logDebug("WARNING: You are on an insecure HTTP connection. Mobile browsers block MediaPipe/WASM over network IPs without HTTPS!", true);
-}
-
-// Initialize MediaPipe Face Landmarker
 async function initMediaPipe() {
     try {
         logDebug("Loading compiled WASM engine binaries...");
@@ -103,11 +94,10 @@ async function initMediaPipe() {
             "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.8/wasm"
         );
         
-        logDebug("Downloading Model Asset bundle (~85MB)...");
+        logDebug("Downloading Model Asset bundle...");
         faceLandmarker = await FaceLandmarker.createFromOptions(vision, {
             baseOptions: {
-                modelAssetPath: `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker_v2_with_blendshapes/float16/1/face_landmarker_v2_with_blendshapes.task`,
-                // FIX 3: CPU delegate fallback processing for stable tracking performance on budget chipsets
+                modelAssetPath: `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task`,
                 delegate: "CPU" 
             },
             runningMode: "VIDEO",
@@ -119,14 +109,13 @@ async function initMediaPipe() {
         
     } catch (error) {
         logDebug(`MediaPipe Error: ${error.name} -> ${error.message}`, true);
-        console.error(error);
     }
 }
 
-// Start Web Camera Feed
+// Requesting standard mobile responsive resolution constraints
 logDebug("Requesting camera pipeline access...");
 navigator.mediaDevices.getUserMedia({
-    video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: "user" }
+    video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: "user" }
 }).then(stream => {
     logDebug("Camera attached successfully.");
     video.srcObject = stream;
@@ -150,12 +139,57 @@ toggle.onclick = () => {
     toggle.style.background = showLandmarks ? "white" : "#555";
 };
 
+// Global parameters computed every frame to handle object-fit: cover scaling maps
+let transformConfig = { scaleX: 1, scaleY: 1, offsetX: 0, offsetY: 0 };
+
+function calculateObjectFitCoverTransform() {
+    const videoWidth = video.videoWidth;
+    const videoHeight = video.videoHeight;
+    const viewWidth = window.innerWidth;
+    const viewHeight = window.innerHeight;
+
+    if (!videoWidth || !videoHeight) return;
+
+    // Determine ratios of screen to original media dimensions
+    const videoRatio = videoWidth / videoHeight;
+    const viewRatio = viewWidth / viewHeight;
+
+    let renderWidth, renderHeight;
+
+    // Emulate the browser's native CSS "object-fit: cover" algorithm
+    if (viewRatio > videoRatio) {
+        renderWidth = viewWidth;
+        renderHeight = viewWidth / videoRatio;
+    } else {
+        renderWidth = viewHeight * videoRatio;
+        renderHeight = viewHeight;
+    }
+
+    // Compute pixel offsets where video leaks off screen edges
+    const offsetX = (viewWidth - renderWidth) / 2;
+    const offsetY = (viewHeight - renderHeight) / 2;
+
+    transformConfig = {
+        scaleX: renderWidth,
+        scaleY: renderHeight,
+        offsetX: offsetX,
+        offsetY: offsetY
+    };
+}
+
 function drawLandmarks(points) {
     if (!showLandmarks) return;
     ctx.fillStyle = "#00FFCC"; 
+
     for (const p of points) {
         ctx.beginPath();
-        ctx.arc(p.x * canvas.width, p.y * canvas.height, 2, 0, Math.PI * 2);
+        
+        // Map the normalized coordinate (0-1) to the calculated object-fit container space, 
+        // then apply the offset context to account for cropping bounds.
+        const canvasX = p.x * transformConfig.scaleX + transformConfig.offsetX;
+        const canvasY = p.y * transformConfig.scaleY + transformConfig.offsetY;
+
+        ctx.arc(canvasX, canvasY, 2, 0, Math.PI * 2);
         ctx.fill();
     }
 }
@@ -164,6 +198,12 @@ function loop() {
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Calculate updated layout transformations on every frame step 
+    // to dynamically adapt if the viewport sizes shake or reorient.
+    if (video.readyState >= 2) {
+        calculateObjectFitCoverTransform();
+    }
 
     if (faceLandmarker && video.currentTime !== lastVideoTime && video.readyState >= 2) {
         lastVideoTime = video.currentTime;
