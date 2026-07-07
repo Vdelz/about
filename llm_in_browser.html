@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Career Agent Demo</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #111;
+            color: #ccc;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        h3 { margin: 0 0 5px 0; color: #00ffcc; font-size: 14px; }
+        textarea, input, button, .box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #eee;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea { width: 100%; height: 180px; resize: vertical; }
+        .input-group { display: flex; gap: 10px; }
+        input { flex: 1; }
+        button {
+            background: #00ffcc;
+            color: #111;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        button:disabled {
+            background: #444;
+            color: #777;
+            cursor: not-allowed;
+        }
+        .box {
+            min-height: 100px;
+            max-height: 250px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .debug-container {
+            border-color: #555;
+            background: #050505;
+            height: 120px;
+            font-size: 11px;
+        }
+        .log-error { color: #ff4444; }
+        .log-warn { color: #ffaa00; }
+        .log-info { color: #00ffcc; }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h3>1. Background Context (Paste your CV here)</h3>
+        <textarea id="context" placeholder="Paste your 5-page CV text right here..."></textarea>
+    </div>
+
+    <div>
+        <h3>2. Prompt / Question / Job Description</h3>
+        <div class="input-group">
+            <input type="text" id="prompt" placeholder="Ask a question or paste the target job description..." disabled>
+            <button id="run-btn" disabled>Launch Agent</button>
+        </div>
+    </div>
+
+    <div>
+        <h3>3. AI Assistant Response Stream</h3>
+        <div id="output" class="box">Initializing underlying runtime pipeline...</div>
+    </div>
+
+    <div>
+        <h3>4. System Logs & Debug Console</h3>
+        <div id="debug" class="box debug-container"></div>
+    </div>
+
+    <script type="module">
+        const contextEl = document.getElementById('context');
+        const promptEl = document.getElementById('prompt');
+        const runBtn = document.getElementById('run-btn');
+        const outputEl = document.getElementById('output');
+        const debugEl = document.getElementById('debug');
+
+        function appendLog(message, level = 'info') {
+            const stamp = new Date().toLocaleTimeString();
+            const cssClass = `log-${level}`;
+            debugEl.innerHTML += `<div class="${cssClass}">[${stamp}] ${message}</div>`;
+            debugEl.scrollTop = debugEl.scrollHeight;
+            console.log(`[${level.toUpperCase()}] ${message}`);
+        }
+
+        // DIAGNOSTIC 1: Check security origin protocol context
+        if (window.location.protocol === 'file:') {
+            appendLog("CRITICAL ERROR: Web Workers cannot run via 'file://' (double-clicking local HTML files). You MUST run this via a local server (e.g. Live Server, python -m http.server) or GitHub Pages.", "error");
+            outputEl.innerText = "Error: Local file origin blocked. Use a web server.";
+        } else {
+            appendLog("Origin protocol validated. Compiling background execution loop...");
+        }
+
+        // DIAGNOSTIC 2: Direct path mapping to the exact compiled JS file layout inside the worker script string
+        const workerScript = `
+            import { pipeline, TextStreamer } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.js';
+
+            let modelPipeline = null;
+
+            async function loadModel() {
+                try {
+                    self.postMessage({ type: 'status', msg: 'Downloading ONNX quantized Qwen-2.5-1.5B weights (~1.8GB)...' });
+                    
+                    modelPipeline = await pipeline('text-generation', 'onnx-community/Qwen2.5-1.5B-Instruct', {
+                        dtype: 'q4',
+                        device: 'webgpu'
+                    });
+                    self.postMessage({ type: 'ready' });
+                } catch (gpuError) {
+                    self.postMessage({ type: 'status', msg: 'WebGPU unavailable. Falling back to CPU/WASM inference runtime processing...', level: 'warn' });
+                    try {
+                        modelPipeline = await pipeline('text-generation', 'onnx-community/Qwen2.5-1.5B-Instruct', {
+                            dtype: 'q4',
+                            device: 'wasm'
+                        });
+                        self.postMessage({ type: 'ready' });
+                    } catch (wasmError) {
+                        self.postMessage({ type: 'error', msg: wasmError.message });
+                    }
+                }
+            }
+
+            self.onmessage = async function(event) {
+                const { action, context, prompt } = event.data;
+
+                if (action === 'init') {
+                    await loadModel();
+                } else if (action === 'generate') {
+                    if (!modelPipeline) {
+                        self.postMessage({ type: 'error', msg: 'Engine pipeline not ready.' });
+                        return;
+                    }
+
+                    try {
+                        const messages = [
+                            { role: 'system', content: 'You are an explicit, no-hallucination agent. Read the provided CV/Context data carefully. Answer the user prompt or question using ONLY the provided facts. If the information is not present in the text, state clearly: "Information missing from background context."' },
+                            { role: 'user', content: 'Background Context/CV:\\n' + context + '\\n\\nUser Prompt/Question:\\n' + prompt }
+                        ];
+
+                        self.postMessage({ type: 'start' });
+
+                        const streamer = new TextStreamer(modelPipeline.tokenizer, {
+                            skip_prompt: true,
+                            callback_function: (tokenText) => {
+                                self.postMessage({ type: 'token', text: tokenText });
+                            }
+                        });
+
+                        await modelPipeline(messages, {
+                            max_new_tokens: 512,
+                            streamer: streamer,
+                            temperature: 0.1
+                        });
+
+                        self.postMessage({ type: 'end' });
+
+                    } catch (error) {
+                        self.postMessage({ type: 'error', msg: error.message });
+                    }
+                }
+            };
+        `;
+
+        try {
+            const blob = new Blob([workerScript], { type: 'application/javascript' });
+            const workerInstance = new Worker(URL.createObjectURL(blob), { type: 'module' });
+
+            // DIAGNOSTIC 3: Capture background compilation/import failures directly
+            workerInstance.onerror = function(err) {
+                appendLog(`Worker Script Compilation Error: ${err.message} (Line: ${err.lineno})`, "error");
+                outputEl.innerText = `Worker Execution Failure: ${err.message}`;
+            };
+
+            workerInstance.postMessage({ action: 'init' });
+
+            workerInstance.onmessage = function(event) {
+                const data = event.data;
+                switch (data.type) {
+                    case 'status':
+                        appendLog(data.msg, data.level || 'info');
+                        outputEl.innerText = data.msg;
+                        break;
+                    case 'ready':
+                        appendLog("Pipeline successfully built! Input unlocked.", "info");
+                        outputEl.innerText = "System ready. Input data and execute.";
+                        promptEl.disabled = false;
+                        runBtn.disabled = false;
+                        break;
+                    case 'start':
+                        appendLog("Processing analysis matrix tokens...", "info");
+                        outputEl.innerText = "";
+                        runBtn.disabled = true;
+                        break;
+                    case 'token':
+                        outputEl.innerText += data.text;
+                        break;
+                    case 'end':
+                        appendLog("Generation loop resolved.", "info");
+                        runBtn.disabled = false;
+                        break;
+                    case 'error':
+                        appendLog(`Model error: ${data.msg}`, "error");
+                        outputEl.innerText = `Error: ${data.msg}`;
+                        runBtn.disabled = false;
+                        break;
+                }
+            };
+
+            runBtn.onclick = function() {
+                const contextText = contextEl.value.trim();
+                const promptText = promptEl.value.trim();
+
+                if (!promptText) {
+                    appendLog("Prompt field cannot be blank.", "warn");
+                    return;
+                }
+
+                workerInstance.postMessage({
+                    action: 'generate',
+                    context: contextText,
+                    prompt: promptText
+                });
+            };
+
+        } catch (setupError) {
+            appendLog(`Worker Setup Blocked: ${setupError.message}`, "error");
+        }
+    </script>
+</body>
+</html>
