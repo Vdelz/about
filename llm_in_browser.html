@@ -114,9 +114,9 @@
 
             async function loadModel() {
                 try {
-                    self.postMessage({ type: 'status', msg: 'Downloading ONNX quantized Qwen-2.5-1.5B weights (~1.8GB)...' });
+                    self.postMessage({ type: 'status', msg: 'Downloading ONNX quantized Qwen-2.5-0.5B weights (~1.8GB)...' });
                     
-                    modelPipeline = await pipeline('text-generation', 'onnx-community/Qwen2.5-1.5B-Instruct', {
+                    modelPipeline = await pipeline('text-generation', 'onnx-community/Qwen2.5-0.5B-Instruct', {
                         dtype: 'q4',
                         device: 'webgpu'
                     });
@@ -124,7 +124,7 @@
                 } catch (gpuError) {
                     self.postMessage({ type: 'status', msg: 'WebGPU unavailable. Falling back to CPU/WASM inference runtime processing...', level: 'warn' });
                     try {
-                        modelPipeline = await pipeline('text-generation', 'onnx-community/Qwen2.5-1.5B-Instruct', {
+                        modelPipeline = await pipeline('text-generation', 'onnx-community/Qwen2.5-0.5B-Instruct', {
                             dtype: 'q4',
                             device: 'wasm'
                         });
