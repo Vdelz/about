@@ -4,7 +4,7 @@
     "title": "HALOS: Hierarchical Aggregation Learning for Overdensity Search",
     "conference": "Astronomy and Computing",
     "year": 2026,
-    "description": null,
+    "description": "New!",
     "link": "https://www.sciencedirect.com/science/article/pii/S2213133726000569"
   },
   {
@@ -12,7 +12,7 @@
     "title": "A Dual AI Framework for the Automatic Characterization of low-interacting H-rich SNe",
     "conference": "Astronomy and Computing",
     "year": 2026,
-    "description": null,
+    "description": "New!",
     "link": "https://www.sciencedirect.com/science/article/pii/S2213133726000582"
   },
   {
@@ -20,8 +20,16 @@
     "title": "3D YOLO-like Detector for Cosmic Voids: A Multi-Scale Deep Learning Approach to Large-Scale Underdense Structures",
     "conference": "Astronomy and Computing",
     "year": 2026,
-    "description": "under review",
-    "link": null
+    "description": "New!",
+    "link": "https://www.sciencedirect.com/science/article/pii/S2213133726000946"
+  },
+  {
+    "id": 8,
+    "title": "Cloud Detection Challenge - Methods and Results",
+    "conference": "IEEE MetroXRAINE 2024",
+    "year": 2025,
+    "description": "New!",
+    "link": "https://ieeexplore.ieee.org/document/10934992/authors#authors"
   },
   {
     "id": 4,
