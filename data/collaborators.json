@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "name": "Ersilia Del Zoppo",
-    "role": "Aerospace Systems Engineer @ ESA",
-    "imageUrl": "images/collab/ersilia_delzoppo.jpg",
+    "name": "Giuseppe Angilella",
+    "role": "Chair of the Master's Program in Physics @ UniCT",
+    "imageUrl": "images/collab/giuseppe_angilella.jpg",
     "url": "https://www.linkedin.com/in/ersilia-del-zoppo-68b81562/"
   },
   {
@@ -89,5 +89,19 @@
     "role": "Head Engineer @ Citus AG",
     "imageUrl": "images/collab/alberto_stracuzzi.jpg",
     "url": "https://www.linkedin.com/in/alberto-stracuzzi/"
-  }
+  },
+  {
+    "id": 14,
+    "name": "Carmelita Carbone",
+    "role": "Staff Researcher Level-II @ INAF",
+    "imageUrl": "images/collab/carmelita_carbone.jpg",
+    "url": "https://scholar.google.it/citations?user=VmgQDhoAAAAJ"
+  },
+  {
+    "id": 15,
+    "name": "Ersilia Del Zoppo",
+    "role": "Aerospace Systems Engineer @ ESA",
+    "imageUrl": "images/collab/ersilia_delzoppo.jpg",
+    "url": "https://www.linkedin.com/in/ersilia-del-zoppo-68b81562/"
+  }  
 ]
