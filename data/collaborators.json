@@ -103,5 +103,12 @@
     "role": "Aerospace Systems Engineer @ ESA",
     "imageUrl": "images/collab/ersilia_delzoppo.jpg",
     "url": "https://www.linkedin.com/in/ersilia-del-zoppo-68b81562/"
+  },
+  {
+    "id": 16,
+    "name": "Cesare Scalia",
+    "role": "Lead Data Scientist @ ENI",
+    "imageUrl": "images/collab/cesare_scalia.jpg",
+    "url": "https://www.linkedin.com/in/cesare-scalia-phd/"
   }  
 ]
