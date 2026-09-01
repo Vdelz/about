@@ -1,0 +1,177 @@
+[
+  {
+    "company": "Koexai",
+    "projects": [
+      "Technical interviews",
+      "Resource management",
+      "Project planning",
+      "Project Proposals",
+      "Mentoring and Team Leading",
+      "Causal inference analisys for telemedicine",
+      "Cloud detection from celiometer data",
+      "HPC powered analysis of 3D-point clouds",
+      "Detection of voids in 3D raster volumes",
+      "Physics informed generative AI",
+      "Non uniformly sampled function reconstruction",
+      "Anomaly Detection of 4D cluster signals",
+      "Characterization of solar flare",
+      "Vessels load forecasting and dynamic pricing",
+      "Agentic hierarchical generation",
+      "Dynamic graph RAG",
+      "Intermediate evluations",
+      "Reporting deliverables",
+      "Code reviews",
+      "Incremental development",
+      "Client Facing",
+      "Public speaking (conferences)",
+      "Scientific Publishing",
+      "Website mainteinance"
+    ]
+  },
+  {
+    "company": "State Street Bank",
+    "projects": [
+      "Code Migration (Python)",
+      "Dependency upgrading",
+      "Debugging and Logging of services",
+      "Document processing applied to FinTech",
+      "Named Entity Recognition from tabular data",
+      "Tabular patterns automatic extraction",
+      "Multimodal table extraction from documents",
+      "Data ingestion Pipeline"
+    ]
+  },
+  {
+    "company": "Cartrack LTD",
+    "projects": [
+      "Technical interviews",
+      "Tutoring of Graduates",
+      "Team Leading",
+      "Project planning",
+      "Face detection and tracking",
+      "Facial landmarks and pose estimation",
+      "Driver distraction tiredness detection",
+      "Action recognition (yawning, falling asleep)",
+      "Safety belt on",
+      "Hands on steering wheel",
+      "Phone usage, eating, drinking",
+      "Creating a real dataset for in cabin monitoring",
+      "Camera synchronization",
+      "Multiple camera system 3D calibration",
+      "Camera Distortion estimation",
+      "Aruco, Charuco, Checkerboard calibration",
+      "Image rectification and 3D reconstruction",
+      "Dashcam Video nudge stabilization",
+      "Vanishing point detection from video",
+      "Inverse perspective mapping",
+      "Sensor Fusion with GPS",
+      "Non uniform robust Kalman filter",
+      "Road segmentation, lane detection",
+      "Vehicle lane/road alignment",
+      "Preceding vehicles brakes detection",
+      "safety distance estimation",
+      "vehicle tracking",
+      "Road anomaly detection",
+      "Pedestrian Bikes tracking",
+      "Traffic light detection and state estimation",
+      "Traffic vertical and horizontal signals detection",
+      "System failure detection and deactivation",
+      "Detecting known system failures Flares Darkness"
+    ]
+  },
+  {
+    "company": "Tattile",
+    "projects": [
+      "Tutoring of undergraduate",
+      "Video denoising runtime bilateral filtering",
+      "Video stabilization with Lukas Kanade markers",
+      "Robust background segmentation running median",
+      "Vehicle instance segmentation and tracking",
+      "Vehicle class identification",
+      "Truck Axis counter",
+      "Image stitching from video",
+      "License plate detection alignment and reading",
+      "One shot learning of new symbols and letters",
+      "Synthetic data generation",
+      "Transfer learning",
+      "Regularization",
+      "8-bit quantization",
+      "custom initialization to avoid vanishing gradient",
+      "folding residuals into sequential CNN",
+      "folding batch normalization",
+      "noise layers for QAT",
+      "Implementing custom losses for final layers on CPU",
+      "Splitting operations on DSP and CPU",
+      "Implementation of custom Bounding Box Fusion",
+      "Migration between DL frameworks",
+      "Deployment on Xilinx",
+      "Compiling CNN for DSP and FPGA architectures",
+      "Training multi headed network with common backbone"
+    ]
+  },
+  {
+    "company": "Leonardo",
+    "projects": [
+      "Event analysis from drone control unit logs",
+      "Sensor fusion and Anomaly detection",
+      "Vessel speed and position prediction",
+      "Alerting and collision avoidance",
+      "Time Series analysis energy/gas/petrol/water",
+      "Prediction of price/demand/availability",
+      "Depth from stereo images",
+      "3D tracking from multi-camera systems",
+      "Speaker identification",
+      "Face alignment and recognition",
+      "License plate reading",
+      "Vehicle tracking with YOLO-v2 Caffe"
+    ]
+  },
+  {
+    "company": "Tabex Vision Technologies",
+    "projects": [
+      "Document segmentation",
+      "Table detection",
+      "Charts detection",
+      "Image Classification",
+      "Image pre-processing",
+      "OCR improvements",
+      "Text extraction from tables",
+      "AWS S3 and EC2 platform",
+      "REST services",
+      "Java DeepLearning4j"
+    ]
+  },
+  {
+    "company": "DLR - ESA",
+    "projects": [
+      "Lossy compression of SAR signal (sampling / depth)",
+      "Staggered SAR signal interpolation",
+      "Alias suppression in freq domain",
+      "SAR Radar images quality improvement",
+      "Metrics evaluation (SNR, PSNR, Resolution, AASR, SLSR)",
+      "Scientific publishing (3 papers, 1 conference IEEE)"
+    ]
+  },
+  {
+    "company": "University of Catania",
+    "projects": [
+      "Object Detection for EuroBot 2011 contest",
+      "Wheel Odometry for egomotion estimation",
+      "Egomotion correction from IR sensor array",
+      "Arduino distance sensors system, 6DOF IMU"
+    ]
+  },
+  {
+    "company": "External Projects",
+    "projects": [
+      "RBC segmentation and analysis",
+      "Small LLM for translation without a paired dataset",
+      "COVID detection from voice recordings",
+      "Satellite imagery segmentation for agriculture",
+      "Harvesting estimation from smartphone pictures",
+      "Simulating drone autonomous flights",
+      "Web scrapers for data harvesting",
+      "Code management tool to improve handovers"
+    ]
+  }
+]
