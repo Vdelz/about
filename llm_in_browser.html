@@ -112,40 +112,59 @@
 
             let modelPipeline = null;
 
-            async function loadModel() {
-                try {
-                    self.postMessage({ type: 'status', msg: 'Downloading ONNX quantized Qwen-2.5-0.5B weights (~380MB)...' });
-                    
-                    // Attempt WebGPU first for GPU acceleration
-                    modelPipeline = await pipeline('text-generation', 'onnx-community/Qwen2.5-0.5B-Instruct', {
-                        dtype: 'q4',
-                        device: 'webgpu'
-                    });
-                    self.postMessage({ type: 'ready' });
-                } catch (gpuError) {
-                    self.postMessage({ 
-                        type: 'status', 
-                        msg: 'WebGPU unavailable. Falling back to WASM/CPU inference runtime...', 
-                        level: 'warn' 
-                    });
+            // 1. Detect environment and memory constraints
+            const isMobile = /Mobi|Android|iPhone|iPad/i.test(self.navigator.userAgent);
+            const deviceRam = self.navigator.deviceMemory || 4; // Defaults to 4GB if restricted
+
+            // 2. Prioritized configuration queue based on hardware
+            const modelQueue = (isMobile || deviceRam < 4) ? [
+                { id: 'onnx-community/SmolLM2-135M-Instruct-ONNX', device: 'webgpu', label: 'SmolLM2-135M [WebGPU]' },
+                { id: 'onnx-community/SmolLM2-135M-Instruct-ONNX', device: 'cpu',    label: 'SmolLM2-135M [CPU/WASM]' }
+            ] : [
+                { id: 'onnx-community/Qwen2.5-0.5B-Instruct',      device: 'webgpu', label: 'Qwen2.5-0.5B [WebGPU]' },
+                { id: 'onnx-community/Qwen2.5-0.5B-Instruct',      device: 'cpu',    label: 'Qwen2.5-0.5B [CPU/WASM]' },
+                { id: 'onnx-community/SmolLM2-135M-Instruct-ONNX', device: 'webgpu', label: 'SmolLM2-135M Fallback [WebGPU]' },
+                { id: 'onnx-community/SmolLM2-135M-Instruct-ONNX', device: 'cpu',    label: 'SmolLM2-135M Fallback [CPU/WASM]' }
+            ];
+
+            async function loadModelWithFallback() {
+                for (const config of modelQueue) {
                     try {
-                        // FIX: 'cpu' is the valid backend identifier for WebAssembly execution
-                        modelPipeline = await pipeline('text-generation', 'onnx-community/Qwen2.5-0.5B-Instruct', {
+                        self.postMessage({ 
+                            type: 'status', 
+                            msg: 'Attempting initialization: ' + config.label + '...' 
+                        });
+
+                        modelPipeline = await pipeline('text-generation', config.id, {
                             dtype: 'q4',
-                            device: 'cpu'
+                            device: config.device
+                        });
+
+                        self.postMessage({ 
+                            type: 'status', 
+                            msg: 'Successfully loaded: ' + config.label 
                         });
                         self.postMessage({ type: 'ready' });
-                    } catch (wasmError) {
-                        self.postMessage({ type: 'error', msg: wasmError.message || 'CPU/WASM initialization failed.' });
+                        return; // Stop execution on first working backend
+
+                    } catch (err) {
+                        self.postMessage({ 
+                            type: 'status', 
+                            msg: config.label + ' failed (' + (err.message || 'OOM/Context Lost') + '). Trying next profile...', 
+                            level: 'warn' 
+                        });
                     }
                 }
+
+                self.postMessage({ 
+                    type: 'error', 
+                    msg: 'All execution pipelines exhausted. Hardware unsupported.' 
+                });
             }
 
             self.onmessage = async function(event) {
-                const { action, context, prompt } = event.data;
-
-                if (action === 'init') {
-                    await loadModel();
+                if (event.data.action === 'init') {
+                    await loadModelWithFallback();
                 } else if (action === 'generate') {
                     if (!modelPipeline) {
                         self.postMessage({ type: 'error', msg: 'Engine pipeline not ready.' });
